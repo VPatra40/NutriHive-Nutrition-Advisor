@@ -1,2 +1,1 @@
-Developing a nutrition advisory system that provides personalized dietary recommendations based on health
-goals and blood sugar levels, with user authentication and data privacy features.
+Developed a full-stack web application using Spring Boot, Oracle DB, and HTML/CSS/JS to collect and analyze user health data (BMI, blood sugar, etc.), display dynamic health charts, and provide personalized wellness recommendations.
