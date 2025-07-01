@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="style2.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="top-header">
+            <h3 class="a">Have an account ?</h3>
+            <header>Login</header>
+        </div>
+        <div class="form" id="loginForm">
+            <form id="loginForm">
+                <span>
+                    <i class="fa fa-user"></i>
+                    <input type="text" id="userInput" placeholder="Email or Phone Number" required>
+                </span><br>
+                <button type="submit">Send OTP</button>
+            </form>
+        </div>
+        <div class="form" id="otpForm" style="display: none;">
+            <form id="otpForm">
+                <span>
+                    <i class="fa fa-key"></i>
+                    <input type="text" id="otp" placeholder="Enter OTP" required>
+                </span><br>
+                <button type="submit">Verify OTP</button>
+                <button id="resendOTP" style="display: none;">Resend OTP</button>
+            </form>
+        </div>
+    </div>
+
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const userInput = document.getElementById('userInput').value;
+    
+        if (!validateInput(userInput)) {
+            alert('Please enter a valid email or phone number.');
+            return;
+        }
+    
+        let otp = generateOTP();
+        alert(`OTP sent to ${userInput}: ${otp}`);
+    
+        localStorage.setItem('userInput', userInput);
+    
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('otpForm').style.display = 'block';
+    
+        document.getElementById('otpForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const enteredOTP = document.getElementById('otp').value;
+    
+            if (enteredOTP == otp) {
+                localStorage.setItem('isLoggedIn', 'true');
+                window.location.href = 'form.html';
+            } else {
+                alert('Invalid OTP. Please try again.');
+                document.getElementById('resendOTP').style.display = 'block';
+            }
+        });
+    
+        document.getElementById('resendOTP').addEventListener('click', function(event) {
+            event.preventDefault();
+            otp = generateOTP();
+            alert(`New OTP sent to ${userInput}: ${otp}`);
+        });
+    });
+    
+    function generateOTP() {
+        return Math.floor(100000 + Math.random() * 900000);
+    }
+    
+    function validateInput(input) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phoneRegex = /^[0-9]{10}$/;
+        return emailRegex.test(input) || phoneRegex.test(input);
+    }
+</script>
+</body>
+</html>

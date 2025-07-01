@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Registration Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Lato', sans-serif;
+            color: #4E7337;
+            margin: 0;
+            padding: 0;
+            background-image: url("na11\ \(2\).jpg"); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Transparency effect */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #4E7337;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Registration Form Styles */
+        #registration-section {
+            padding: 40px 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 5px;
+            color: #4E7337;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            color: #333;
+            box-sizing: border-box; /* Ensure consistent width */
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px; /* Increased padding for better button size */
+            background-color: #4E7337;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-sizing: border-box; /* Ensure consistent width */
+        }
+
+        .btn:hover {
+            background-color: #5a8a3d;
+        }
+
+        /* Health Chart Section Styles */
+        #health-chart-section {
+            padding: 40px 20px;
+            margin-top: 20px;
+        }
+
+        #chart-container {
+            margin: 20px 0;
+        }
+
+        #health-recommendations {
+            margin-top: 20px;
+        }
+
+        #health-recommendations h3 {
+            font-size: 1.5rem;
+            color: #4E7337;
+            margin-bottom: 10px;
+        }
+
+        #recommendations-list {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        #recommendations-list li {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        /* Additional Styles for Blood Sugar Input */
+        #blood-sugar-group {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Registration Form Section -->
+    <section id="registration-section">
+        <div class="container">
+            <h2>Health Registration Form</h2>
+            <form id="health-form">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" name="age" placeholder="Enter your age" required>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender:</label>
+                    <select id="gender" name="gender" required>
+                        <option value="">Select your gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="health-condition">Health Condition:</label>
+                    <select id="health-condition" name="health-condition" required>
+                        <option value="">Select your health condition</option>
+                        <option value="diabetic">Diabetic</option>
+                        <option value="overweight">Overweight</option>
+                        <option value="underweight">Underweight</option>
+                        <option value="asthma">Asthma</option>
+                        <option value="autoimmune">Autoimmune Disease</option>
+                        <option value="normal">Normal</option>
+                    </select>
+                </div>
+                <div class="form-group" id="blood-sugar-group">
+                    <label for="blood-sugar">Blood Sugar Level (mg/dL):</label>
+                    <input type="number" id="blood-sugar" name="blood-sugar" placeholder="Enter your blood sugar level">
+                </div>
+                <div class="form-group">
+                    <label for="weight">Weight (kg):</label>
+                    <input type="number" id="weight" name="weight" placeholder="Enter your weight" required>
+                </div>
+                <div class="form-group">
+                    <label for="height">Height (cm):</label>
+                    <input type="number" id="height" name="height" placeholder="Enter your height" required>
+                </div>
+                <button type="submit" class="btn">Get Health Chart</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Health Chart Section -->
+    <section id="health-chart-section" style="display: none;">
+        <div class="container">
+            <h2>Your Health Chart</h2>
+            <div id="chart-container">
+                <canvas id="health-chart"></canvas>
+            </div>
+            <div id="health-recommendations">
+                <h3>Health Recommendations</h3>
+                <ul id="recommendations-list"></ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript for Form Submission and Chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+    // JavaScript for Form Submission and Chart
+    document.addEventListener('DOMContentLoaded', function () {
+        // Check if the user is logged in
+        if (localStorage.getItem('isLoggedIn') !== 'true') {
+            alert("You must log in first.");
+            window.location.href = 'lf2.html';
+        }
+    
+        const userEmail = localStorage.getItem('userEmail');
+        console.log("User's email:", userEmail);
+    
+        // Add event listener for form submission
+        document.getElementById('health-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+    
+            // Get form values
+            const name = document.getElementById('name').value;
+            const age = parseInt(document.getElementById('age').value);
+            const gender = document.getElementById('gender').value;
+            const healthCondition = document.getElementById('health-condition').value;
+            const weight = parseFloat(document.getElementById('weight').value); // Ensure weight is a number
+            const height = parseFloat(document.getElementById('height').value);
+            const bloodSugar = document.getElementById('blood-sugar').value;
+    
+            // Calculate BMI
+            const bmi = (weight / ((height / 100) ** 2)).toFixed(2);
+    
+            // Show the health chart section
+            document.getElementById('health-chart-section').style.display = 'block';
+    
+            // Generate and display health recommendations
+            const recommendations = generateRecommendations(healthCondition, bmi, bloodSugar, gender, age);
+            const recommendationsList = document.getElementById('recommendations-list');
+            recommendationsList.innerHTML = recommendations.map(rec => `<li>${rec}</li>`).join('');
+    
+            // Render the health chart
+            renderHealthChart(healthCondition, bmi, bloodSugar, gender, weight);
+        });
+    
+        // Show/hide blood sugar input based on health condition
+        document.getElementById('health-condition').addEventListener('change', function () {
+            const bloodSugarGroup = document.getElementById('blood-sugar-group');
+            if (this.value === 'diabetic') {
+                bloodSugarGroup.style.display = 'block';
+            } else {
+                bloodSugarGroup.style.display = 'none';
+            }
+        });
+    
+        // Function to generate health recommendations
+        function generateRecommendations(healthCondition, bmi, bloodSugar, gender, age) {
+            let recommendations = [];
+    
+            // Blood sugar feedback for non-diabetic individuals
+            if (bloodSugar >= 70 && bloodSugar <= 99) {
+                recommendations.push("Your blood glucose level is within the healthy range (70-99 mg/dL). This is a healthy blood glucose level for someone without diabetes.");
+                recommendations.push("To maintain this level:");
+                recommendations.push("- Eat a balanced diet rich in whole grains, lean proteins, and healthy fats.");
+                recommendations.push("- Avoid excessive sugar and refined carbohydrates.");
+                recommendations.push("- Exercise regularly to improve insulin sensitivity.");
+                recommendations.push("- Stay hydrated and monitor your blood sugar levels periodically.");
+            }
+    
+            // Tailored recommendations for women aged 50-60
+            if (gender === 'female' && age >= 50 && age <= 60) {
+                recommendations.push("For women in your age group:");
+                recommendations.push("- Focus on maintaining bone health by consuming calcium-rich foods and vitamin D.");
+                recommendations.push("- Engage in weight-bearing exercises to strengthen bones and muscles.");
+                recommendations.push("- Monitor cardiovascular health through regular checkups.");
+                recommendations.push("- Maintain a healthy weight to reduce the risk of chronic conditions.");
+                recommendations.push("- Practice stress management techniques like yoga or meditation.");
+            } else if (gender === 'female' && age >= 20 && age <= 49) {
+                recommendations.push("For women in your age group:");
+                recommendations.push("- Maintain a balanced diet to support hormonal health.");
+                recommendations.push("- Engage in regular physical activity to manage weight and stress.");
+                recommendations.push("- Monitor iron levels to prevent anemia, especially during menstrual cycles.");
+                recommendations.push("- Prioritize mental health and seek support if needed.");
+            }
+    
+            // General recommendations based on health condition
+            if (healthCondition === 'diabetic') {
+                recommendations.push(`Monitor blood sugar levels regularly. Current level: ${bloodSugar} mg/dL.`);
+                recommendations.push("Follow a low-carb, high-fiber diet.");
+                recommendations.push("Exercise for at least 30 minutes daily.");
+                recommendations.push(gender === 'female' ? "Pay attention to hormonal changes affecting blood sugar." : "Men should monitor for cardiovascular risks.");
+            } else if (healthCondition === 'overweight') {
+                recommendations.push("Aim for a calorie deficit diet.");
+                recommendations.push("Incorporate cardio and strength training exercises.");
+                recommendations.push("Avoid sugary and processed foods.");
+                recommendations.push(gender === 'female' ? "Focus on hormonal balance and metabolism." : "Men should focus on reducing visceral fat.");
+            } else if (healthCondition === 'underweight') {
+                recommendations.push("Increase calorie intake with healthy foods.");
+                recommendations.push("Include protein-rich foods in your diet.");
+                recommendations.push("Perform strength training to build muscle.");
+                recommendations.push(gender === 'female' ? "Ensure adequate iron and calcium intake." : "Men should focus on muscle-building exercises.");
+            } else if (healthCondition === 'asthma') {
+                recommendations.push("Avoid triggers like smoke, pollen, and dust.");
+                recommendations.push("Use inhalers as prescribed.");
+                recommendations.push("Practice breathing exercises regularly.");
+                recommendations.push(gender === 'female' ? "Monitor for asthma worsening during hormonal changes." : "Men should avoid strenuous activities in polluted areas.");
+            } else if (healthCondition === 'autoimmune') {
+                recommendations.push("Follow an anti-inflammatory diet.");
+                recommendations.push("Get regular checkups and monitor symptoms.");
+                recommendations.push("Manage stress levels effectively.");
+                recommendations.push(gender === 'female' ? "Be aware of autoimmune flare-ups during hormonal changes." : "Men should focus on reducing inflammation through diet.");
+            } else {
+                recommendations.push("Maintain a balanced diet.");
+                recommendations.push("Exercise regularly to stay fit.");
+                recommendations.push("Get regular health checkups.");
+                recommendations.push("Stay hydrated and avoid junk food.");
+            }
+            return recommendations;
+        }
+    
+        // Function to render the health chart
+        function renderHealthChart(healthCondition, bmi, bloodSugar, gender, weight) {
+            const ctx = document.getElementById('health-chart').getContext('2d');
+            let chartData = {};
+    
+            if (healthCondition === 'diabetic') {
+                chartData = {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                    datasets: [{
+                        label: 'Blood Sugar Level (mg/dL)',
+                        data: [bloodSugar, bloodSugar - 10, bloodSugar - 20, bloodSugar - 30],
+                        borderColor: '#FF6384',
+                        borderWidth: 2,
+                        fill: false
+                    }]
+                };
+            } else if (healthCondition === 'overweight' || healthCondition === 'underweight') {
+                chartData = {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                    datasets: [{
+                        label: 'Weight (kg)',
+                        data: [weight, weight - 2, weight - 4, weight - 6],
+                        borderColor: '#36A2EB',
+                        borderWidth: 2,
+                        fill: false
+                    }]
+                };
+            } else if (healthCondition === 'asthma') {
+                chartData = {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                    datasets: [{
+                        label: 'Peak Flow Rate (L/min)',
+                        data: [400, 420, 410, 430],
+                        borderColor: '#FFCE56',
+                        borderWidth: 2,
+                        fill: false
+                    }]
+                };
+            } else if (healthCondition === 'autoimmune') {
+                chartData = {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                    datasets: [{
+                        label: 'Inflammation Markers',
+                        data: [5, 4, 3, 2],
+                        borderColor: '#4BC0C0',
+                        borderWidth: 2,
+                        fill: false
+                    }]
+                };
+            } else {
+                chartData = {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                    datasets: [{
+                        label: 'BMI',
+                        data: [bmi, bmi - 1, bmi - 2, bmi - 3],
+                        borderColor: '#4E7337',
+                        borderWidth: 2,
+                        fill: false
+                    }]
+                };
+            }
+    
+            // Render the chart
+            const chart = new Chart(ctx, {
+                type: 'line',
+                data: chartData,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            title: {
+                                display: true,
+                                text: healthCondition === 'diabetic' ? 'Blood Sugar (mg/dL)' :
+                                    healthCondition === 'overweight' || healthCondition === 'underweight' ? 'Weight (kg)' :
+                                    healthCondition === 'asthma' ? 'Peak Flow Rate (L/min)' :
+                                    healthCondition === 'autoimmune' ? 'Inflammation Markers' : 'BMI'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Time'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>

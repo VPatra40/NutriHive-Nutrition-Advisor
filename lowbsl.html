@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <title>Diabetic Diet Plans (Low)</title>
+    <link rel="stylesheet" href="lbsstyle.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Qwigley&display=swap" rel="stylesheet">
+   
+    <style>
+        * {
+    font-family:'Quicksand';
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+    color: rgb(44, 40, 40);
+}
+
+body {
+    height: 700px;
+    display:flex;
+    background-color: rgba(255, 255, 255, 0.438);
+    background-blend-mode: lighten;
+    background-image: url('bg.jpg');
+    background-size: cover;
+}
+
+
+   
+
+.container {
+    position: absolute;
+    margin-top: 5%;
+    margin-left: 6%;
+}
+
+
+
+.box1{
+    position: absolute;
+    width: 850px;
+    height: 110px;
+    padding: 20px;
+    margin-top: 0%;
+    margin-left: 45%;
+}
+
+.box1 h3{
+   margin-top: 2%;
+    margin-left: -7%;
+}
+
+.mealbox{
+    margin-top: 50%;
+    position: absolute;
+}
+
+.diet-plan1{
+    position: absolute;
+    background-color: rgba(248, 248, 248, 0.577);
+    background-blend-mode:lighten;
+    background-image: url('yogurt.jpg');
+    width: 300px;
+    height: 300px;
+    border-radius: 20px;
+}
+
+
+.dbox1 img{
+    position: absolute;
+    width: 280px;
+    height: 400px;  
+    z-index: 1;
+    margin-top: -62%;
+    margin-left: 2%;
+    filter: drop-shadow(15px 15px 15px #333335b8); 
+    transition: transform 0.3s ease-in-out;   
+
+}
+
+.dbox1 img:hover {
+    transform: scale(1.1); 
+}
+
+
+
+.diet-plan1 h2 {
+    text-decoration: underline;
+    color: #2b2a2a;
+    margin-top: 60%;
+    margin-left: 30%;
+    position: absolute;
+    font-family: 'Qwigley';
+    font-size: 40px;
+}
+
+.diet-plan1 h4 {
+    color: rgb(53, 53, 53);
+    margin-top:77%;
+    margin-left: 4%;
+    position:relative;
+
+}
+
+.diet-plan2 {
+    background-color: rgba(248, 248, 248, 0.577);
+    background-blend-mode:lighten;
+    background-image: url('salad.jpg');
+    border-radius: 20px;
+    margin-left: 120%;
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+
+.dbox2 img{
+    width: 250px;
+    height: 400px;
+    margin-top: -62%;
+    margin-left:7.5%; 
+    position: relative;
+    filter: drop-shadow(15px 15px 15px #333335b8); 
+    transition: transform 0.3s ease-in-out; 
+    z-index: 1;
+}
+
+.dbox2 img:hover {
+    transform:scale(1.1); 
+}
+
+.diet-plan2 h2{
+    text-decoration: underline;
+    color: #292828;
+    z-index: 2;
+    margin-top: -12%;
+    margin-left: 35%;
+    position: absolute;
+    font-family: 'Qwigley';
+    font-size: 40px;
+}
+
+.diet-plan2 h4 {
+    color: rgb(45, 44, 44);
+    margin-top: 4%;
+    margin-left: 6%;
+    position: absolute;
+    z-index: 1;
+}
+
+.cleaf{
+    width:75px;
+    height: 70px;
+    margin-top: -40%;
+    margin-left: 2%;
+    position: absolute;
+    filter: drop-shadow(15px 15px 15px #333335b8);    
+
+}
+
+.cleaf2{
+    width:75px;
+    height: 70px;
+    margin-top: -117%;
+    margin-left: 70%;
+    position: absolute;
+    filter: drop-shadow(15px 15px 15px #333335b8);    
+
+}
+
+.diet-plan3 {
+    background-color: rgba(248, 248, 248, 0.577);
+    background-blend-mode:lighten;
+    background-image: url('chapati.jpg');
+    background-position: 50%;
+    border-radius: 20px;
+    margin-left: 240%;
+    margin-top: -100%;
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+
+.dbox3 img{
+    width: 230px;
+    height: 250px;
+    margin-top: -40%;
+    margin-left:12%;
+    position: relative;
+    filter: drop-shadow(15px 15px 15px #333335b8); 
+    transition: transform 0.3s ease-in-out;   
+}
+
+.dbox3 img:hover {
+    transform: scale(1.1); 
+}
+
+.diet-plan3 h2{
+    text-decoration: underline;
+    color: #222121;
+    margin-top: 15%;
+    margin-left: 34%;
+    position: absolute;
+    font-family: 'Qwigley';
+    font-size: 40px;
+}
+
+.diet-plan3 h4 {
+    color: rgb(45, 44, 44);
+    margin-top: 32%;
+    margin-left: 8%;
+    position: absolute;
+   
+}
+
+.receipt{
+    margin-left: 87%;
+    margin-top: -70%;
+    position: absolute;
+    width: 400px;
+    height: 400px;
+}
+
+.breakfastdata .carb{
+    width: 300px;
+    height: 50px;
+    background-color: #ff7a7a;
+    padding: 15px;
+    margin-top:27%;
+    border-radius: 30px;
+    position: absolute;
+}
+
+.breakfastdata .carb h4{
+    color: black;
+    position: absolute;
+    margin-top: 0%;
+}
+
+.breakfastdata .calories{
+    width: 300px;
+    height: 50px;
+    background-color: #f8a1a1;
+    padding: 15px;
+    margin-top:47%;
+    border-radius: 30px;
+    position: absolute;
+    
+}
+
+.breakfastdata .calories h4{
+    color: black;
+    position: absolute;
+    margin-top: 0%;
+}
+
+.breakfastdata .sugar{
+    width: 300px;
+    height: 50px;
+    background-color: #f8a1a1;
+    padding: 15px;
+    margin-top:67%;
+    border-radius: 30px;
+    position: absolute;
+    
+}
+
+.breakfastdata .sugar h4{
+    color: black;
+    position: absolute;
+    margin-top: 0%;
+}
+
+
+.lunchdata .carb{
+    background-color: #fcc669;
+    width: 300px;
+    height: 50px;
+    padding: 15px;
+    margin-top:38%;
+    border-radius: 30px;
+    position: absolute;
+}
+
+.lunchdata .carb h4{
+    color: black;
+    position: absolute;
+    margin-top: 0%;
+}
+
+.lunchdata .calories{
+    background-color: #fbd189;
+    width: 300px;
+    height: 50px;
+    padding: 15px;
+    margin-top:58%;
+    border-radius: 30px;
+    position: absolute;
+}
+
+.lunchdata .calories h4{
+    color: black;
+    position: absolute;
+    margin-top: 0%;
+}
+
+.lunchdata .sugar{
+    background-color: #ffe2b0;
+    width: 300px;
+    height: 50px;
+    padding: 15px;
+    margin-top:78%;
+    border-radius: 30px;
+    position: absolute;
+    
+}
+
+.lunchdata .sugar h4{
+    color: black;
+    position: absolute;
+    margin-top: 0%;
+}
+
+
+.dinnerdata .carb{
+    background-color: #c1e757;
+    width: 300px;
+    height: 50px;
+    padding: 15px;
+    margin-top:66%;
+    border-radius: 30px;
+    position: absolute;
+}
+
+.dinnerdata .carb h4{
+    color: black;
+    position: absolute;
+    margin-top: 0%;
+}
+
+.dinnerdata .calories{
+    background-color: #dcf98b;
+    width: 300px;
+    height: 50px;
+    padding: 15px;
+    margin-top:86%;
+    border-radius: 30px;
+    position: absolute;
+}
+
+.dinnerdata .calories h4{
+    color: black;
+    position: absolute;
+    margin-top: 0%;
+}
+
+.dinnerdata .sugar{
+    background-color: #d7f18c;
+    width: 300px;
+    height: 50px;
+    padding: 15px;
+    margin-top:106%;
+    border-radius: 30px;
+    position: absolute;
+    
+}
+
+.dinnerdata .sugar h4{
+    color: black;
+    position: absolute;
+    margin-top: 0%;
+}
+
+.snackbox{
+    margin-top: 155%;
+    position: absolute;
+}
+
+.snackbox h1{
+    position: relative;
+}
+
+.snackbox h2{
+    position: relative;
+}
+
+.snackbox h3{
+    position: relative;
+    font-weight: 500;
+}
+
+
+.circle1, .circle2, .circle3, .circle4 {
+    position: absolute;
+    border-radius: 50%;
+    overflow: hidden; 
+}
+
+
+.circle1 {
+    width: 270px;
+    height: 270px;
+    margin-left: 140%;
+    margin-top: -70%;
+    background-color: #f88787;
+}
+
+
+.candy {
+    width: 220px;
+    height: 220px;
+    margin-left: 9%;
+    margin-top: 8%;
+    filter: drop-shadow(15px 15px 15px #333335b8);
+    position: relative;
+    transition: opacity 0.5s ease;
+    backface-visibility: hidden;
+}
+
+.middle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    opacity: 0; 
+    transition: opacity 0.5s ease;
+    z-index: 2; 
+}
+
+.imgtext h1 {
+    font-family: 'Qwigley';
+}
+
+.circle1:hover .middle {
+    opacity: 1; 
+}
+
+.circle1::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.399); 
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1; 
+}
+
+.circle1:hover::before {
+    opacity: 1;
+}
+
+.circle2 {
+    width: 270px;
+    height: 270px;
+    margin-left: 185%;
+    margin-top: -45%;
+    background-color: #f8d487;
+}
+
+.raisin {
+    width: 320px;
+    height: 320px;
+    margin-left: -9%;
+    margin-top: -10%;
+    filter: drop-shadow(15px 15px 15px #333335b8);
+    transition: opacity 0.5s ease;
+    backface-visibility: hidden;
+}
+
+.circle2:hover .middle {
+    opacity: 1; 
+}
+
+.circle2::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.399); 
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1; 
+}
+
+.circle2:hover::before {
+    opacity: 1;
+}
+
+.circle3 {
+    width: 250px;
+    height: 250px;
+    margin-left: 185%;
+    margin-top: -95%;
+    background-color: #f4a865;
+}
+
+
+.carrot {
+    width: 220px;
+    height: 280px;
+    margin-left: 6%;
+    margin-top: -8%;
+    filter: drop-shadow(5px 5px 5px #333335b8);
+    transition: opacity 0.5s ease;
+    backface-visibility: hidden;
+}
+
+.circle3:hover .middle {
+    opacity: 1; 
+}
+
+.circle3::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.538); 
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1; 
+}
+
+.circle3:hover::before {
+    opacity: 1;
+}
+
+.circle4 {
+    width: 250px;
+    height: 250px;
+    margin-left: 143%;
+    margin-top: -18%;
+    background-color: #f8a587;
+}
+
+.apple {
+    width: 280px;
+    height: 280px;
+    margin-left: -6%;
+    margin-top: -9%;
+    filter: drop-shadow(5px 5px 5px #333335b8);
+    transition: opacity 0.5s ease;
+    backface-visibility: hidden;
+}
+
+.circle4:hover .middle {
+    opacity: 1; 
+}
+
+.circle4::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.399); 
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1; 
+}
+
+.circle4:hover::before {
+    opacity: 1;
+}
+
+.exercisebox{
+    margin-top: 2%;
+    position: relative;
+}
+.exercisebox .exerpic{
+    width: 500px;
+    height: 300px;
+    border-radius: 30px;
+    margin-top: 290%;
+    transition: transform 0.3s ease-in-out; 
+    z-index: 1;
+}
+
+.exerpic:hover {
+    transform:scale(1.1); 
+}
+
+.exercisebox p {
+    margin-top: 5%; 
+    font-weight: bold;
+    display: flex;
+    position:relative;
+}
+
+#myChart {
+    height: auto;
+    margin-top:-80%;
+    position: absolute;
+    margin-left: 97%;
+}
+
+@media (max-width: 768px) {
+    .exercisebox {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.drop{
+    margin-left: 115%;
+    margin-top: -100%;
+}
+</style>
+</head>
+
+<body>
+
+    <div class="container">
+        <section class="diet-plans">
+            <div class="box1">
+                <h2 style="font-size: 40px;">You have <span
+                        style="color: rgb(197, 94, 34); text-decoration: underline;">LOW</span> Blood sugar levels!</h2>
+                <h3> According to your levels, you may have <i>hypoglycemia.</i> Here's what we recommend:</h3>
+            </div>
+
+            <div class="mealbox">
+                <div class="diet-plan1">
+                    <div class="dbox1">
+                        <img src="yogurt.png">
+                    </div>
+                    <h2>Breakfast</h2>
+                    <h4>Fresh yogurt with berries and fruits.</h4>
+
+                    <div class="breakfastdata">
+                        <div class="carb">
+                            <h4>Carbohydrates: 25g</h4>
+                        </div>
+                        <div class="calories">
+                            <h4 style="color: black;">Calories: 187g</h4>
+                        </div>
+                        <div class="sugar">
+                            <h4 style="color: black;">Sugar intake: 5g</h4>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="diet-plan2">
+                    <div class="dbox2">
+                        <img src="salad.png">
+                    </div>
+                    
+                    <img src="cleaf.png" class="cleaf">
+                    <img src="cleaf.png" class="cleaf2">
+                    <h2>Lunch</h2>
+                    <h4>Green salad with sprouts, mung bean, chickpeas, and tomatoes.</h4>
+
+                    <div class="lunchdata">
+                        <div class="carb">
+                            <h4 style="color: black;">Carbohydrates: 44g</h4>
+                        </div>
+                        <div class="calories">
+                            <h4 style="color: black;">Calories: 342g</h4>
+                        </div>
+                        <div class="sugar">
+                            <h4 style="color: black;">Sugar intake: 3g</h4>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="diet-plan3">
+                    <div class="dbox3">
+                        <img src="chapati.png">
+                    </div>
+
+                    <h2>Dinner</h2>
+                    <h4>Chapati with quinoa and beans <br>curry, with salad</h4>
+
+                    <div class="dinnerdata">
+                        <div class="carb">
+                            <h4>Carbohydrates: 12g</h4>
+                        </div>
+                        <div class="calories">
+                            <h4>Calories: 12g</h4>
+                        </div>
+                        <div class="sugar">
+                            <h4>Sugar intake: 12g</h4>
+                        </div>
+                    </div>
+
+                    <img src="receipt2.png" class="receipt">
+
+                </div>
+            </div>
+
+
+            <div class="snackbox">
+                <h1> Want a quick way to <span style="color: orangered; text-decoration: underline;">boost</span>  your glucose levels?</h1>
+                <br>
+                <h2> Here's some snack ideas for you to munch on!<br> (We mentioned the carbohydrates as well.)</h2>
+                <br> <br>
+                <h3>Managing diabetes usually means doing whatever necessary<br> to keep your blood-sugar levels from
+                    going too high. But<br> sometimes the treatments do their job almost too well, and <br>levels get
+                    too low. Some medications for type 2 diabetes put<br> you at risk of mild hypoglycemia, which can
+                    make you feel <br>shaky, hungry, and weak. </h3>
+                <br> <br>
+                <h3 style="font-weight: 500;">People with hypoglycemia should try to include small,<br> nutritious
+                    snacks in between meals to keep blood sugar levels <br>constant and ensure they are having enough
+                    vitamins, <br>minerals, healthy fats, proteins, and fibrous carbohydrates in <br>their diet. Eating
+                    one snack mid-morning, another<br> mid-afternoon, and something small close to bedtime can <br>help
+                    keep blood sugar levels stable throughout both the day<br> and night.</h3>
+
+
+                <div class="circle1">
+                    <img src="candy.png" class="candy">
+                    <div class="middle">
+                        <div class="imgtext">
+                            <h1>Candy</h1> <br> 15g
+                        </div>
+                    </div>
+                </div>
+
+                <div class="circle2">
+                    <img src="raisin.png" class="raisin">
+                    <div class="middle">
+                        <div class="imgtext">
+                            <h1>Raisins</h1> <br> 11g
+                        </div>
+                    </div>
+                </div>
+
+                <div class="circle3">
+                    <img src="carrot.png" class="carrot">
+                    <div class="middle">
+                        <div class="imgtext">
+                            <h1>Carrot Salad</h1> <br> 12g
+                        </div>
+                    </div>
+                </div>
+                <div class="circle4">
+                    <img src="apple.png" class="apple">
+                    <div class="middle">
+                        <div class="imgtext">
+                            <h2 style="font-family: 'Qwigley';">Apples & Peanut Butter</h2> <br> 14g
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercisebox">
+                <img src="exercise.jpeg" class="exerpic">
+                <p> Exercising may leave you sweating and tired, but it can also lead to hypoglycemia. <br> This can
+                    bring on an unusually fast heart rate, dizziness, and confusion. If you have <br>hypoglycemia while
+                    exercising, it’s important to stop your workout and consume <br> something with fast-acting
+                    carbohydrates. This may include a glass of juice, a<br> piece of hard candy, or glucose tablets or
+                    sugar to help raise your glucose levels.<br>
+                    You use up more energy during exercising, and so if you don’t have enough glucose<br> in your body
+                    then you can experience low blood sugar during or after a workout.
+                </p>
+                <canvas id="myChart" style="width:100%;"></canvas>
+                <script>
+                    const timeLabels = ['4pm', '5pm', '6pm', '7pm', '8pm', '9pm'];
+                    const noExerciseData = [6, 6, 6, 7, 8, 9];
+                    const aerobicExerciseData = [9, 16, 10, 8, 7, 9];
+
+                    new Chart("myChart", {
+                        type: "line",
+                        data: {
+                            labels: timeLabels,
+                            datasets: [{
+                                label: "No exercise",
+                                data: noExerciseData,
+                                borderColor: "black",
+                                backgroundColor: "black",
+                                fill: false,
+                                pointStyle: 'circle',
+                                pointRadius: 5,
+                                pointBackgroundColor: "black"
+                            }, {
+                                label: "Aerobic exercise",
+                                data: aerobicExerciseData,
+                                borderColor: "black",
+                                backgroundColor: "white",
+                                fill: true,
+                                pointStyle: 'circle',
+                                pointRadius: 5,
+                                pointBackgroundColor: "white",
+                                pointBorderColor: "black"
+                            }]
+                        },
+                        options:
+                        {
+                            title: {
+                                display: true,
+                                text: 'Glucose Levels in regards to Exercise',
+                                fontSize: 18
+                            },
+                            legend: {
+                                display: true,
+                                position: 'top'
+                            },
+                            scales: {
+                                xAxes: [{
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Time of day ',
+                                        fontSize: 16,
+                                        fontColor: '#000'
+                                    }
+                                }],
+                                yAxes: [{
+                                    ticks: {
+                                        min: 4,
+                                        max: 16
+                                    },
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'CGM glucose (mmol/L)',
+                                        fontSize: 16,
+                                        fontColor: '#000'
+                                    }
+                                }]
+                            }
+                        }
+                    });
+
+                </script>
+                <p>By definition, aerobic exercise (e.g., swimming, jogging, cycling, or walking) involves<br> the
+                    continuous and repeated movements of large muscle groups for at least 10 <br> minutes at a time.
+                </p>
+                <br> <br>
+                <h1 style="text-decoration: underline; color: #710606;"> How can hypoglycemia be treated in everyday life?</h1>
+                <p> • Take all your medications exactly as prescribed.<br> <br>
+                    • Always have snacks available in your home and on you when you’re away from home, <br>such as fruit
+                    snacks, glucose tabs or juice boxes.
+                    <br> <br> • Always have emergency glucagon on hand. Educate your loved ones on how and when<br> to
+                    use it.
+                    <br> <br> • Ask your healthcare professional what type of exercise is right for you. In general,
+                    <br>most adults should get at least 150 minutes a week of moderate aerobic activity. <br> That
+                    includes activities that get the heart pumping, such as walking, biking and <br>swimming. Aim for
+                    about 30 minutes of moderate aerobic activity a day on most<br> days of the week. Most adults also
+                    should aim to do strength-building exercise <br> 2 to 3 times a week.
+
+                    <br><br>
+                    • Use a 9-inch plate. Fill half of the plate with nonstarchy vegetables. Examples include <br>
+                    lettuce, cucumbers, broccoli, tomatoes and green beans. Divide the other half of the<br> plate into
+                    two smaller, equal sections. You might hear these smaller sections called <br>quarters. In one
+                    quarter of the plate, place a lean protein. Examples include fish, beans,<br> eggs, and lean meat
+                    and poultry. On the other quarter, place healthy carbohydrates<br> such as fruits and whole grains.
+                </p>
+                <img src="drop.png" class="drop">
+            </div>
+
+
+
+
+        </section>
+    </div>
+
+
+
+
+
+</body>
+
+</html>
